@@ -1,9 +1,9 @@
-﻿using ClientRegistry.API.Models;
+﻿using ClientRegistry.API.Models.Register;
 
 namespace ClientRegistry.API.Interface
 {
     public interface IClientService
     {
-        void CreateClient(Client client);
+        Task CreateClient(ClientRegisterRequest client);
     }
 }

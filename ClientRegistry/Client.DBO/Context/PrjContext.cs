@@ -11,7 +11,13 @@ namespace Client.DBO.Context
 
         public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
 
-        public DbSet<Clients> Clientes { get; set; }
+        public DbSet<Clients> Clients { get; set; }
+
+        public DbSet<ClientsAddress> ClientsAddress { get; set; }
+
+        public DbSet<ClientsEmail> ClientsEmail { get; set; }
+
+        public DbSet<ClientsPhoneNumber> ClientsPhoneNumbers { get; set; }
 
         public override int SaveChanges()
         {
