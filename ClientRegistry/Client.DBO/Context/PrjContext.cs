@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Client.DBO.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Client.DBO.Context
 {
@@ -10,7 +11,7 @@ namespace Client.DBO.Context
 
         public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Clients> Clientes { get; set; }
 
         public override int SaveChanges()
         {
