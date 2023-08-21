@@ -13,7 +13,7 @@ namespace Client.DBO.Models
 
         [Required]
         [ForeignKey("Clients")]
-        public string IdClient { get; set; }
+        public int IdClient { get; set; }
         public virtual Clients Clients { get; set; }
 
         [Required]

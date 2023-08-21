@@ -3,13 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Client.DBO.Context
 {
-    public class SqlContext : DbContext
+    public class PrjContext : DbContext
     {
-        public SqlContext()
-        {
-        }
+        public PrjContext() { } 
 
-        public SqlContext(DbContextOptions<SqlContext> options) : base(options)
+        public PrjContext(DbContextOptions<PrjContext> options) : base(options)
         {
         }
 
@@ -21,10 +19,14 @@ namespace Client.DBO.Context
 
         public DbSet<ClientsPhoneNumber> ClientsPhoneNumbers { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlServer("DefaultConnection");
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(SqlContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PrjContext).Assembly);
         }
+
     }
 }
