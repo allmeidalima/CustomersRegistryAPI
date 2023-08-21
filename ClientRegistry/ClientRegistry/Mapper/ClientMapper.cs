@@ -5,7 +5,7 @@ namespace ClientRegistry.API.Mapper
 {
     static class ClientMapper
     {
-        public static ClientModel MapClientsToClientModel(this Clients entity) 
+        public static ClientModel MapClientsToClientModel(this Clients entity)
         {
             return new ClientModel
             {
