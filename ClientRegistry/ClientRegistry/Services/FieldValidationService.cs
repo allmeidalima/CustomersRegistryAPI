@@ -13,7 +13,7 @@ namespace ClientRegistry.API.Models
             _decoratedService = decoratedService;
         }
 
-        public void CreateClient(ClientRegisterRequest client)
+        public async Task CreateClient(ClientRegisterRequest client)
         {
             client.Email.ForEach(email =>
             {
