@@ -1,6 +1,6 @@
-﻿namespace ClientRegistry.API.Enum
+﻿namespace Client.Common.Enum
 {
-    public enum Address
+    public enum TypePriority
     {
         Principal = 0,
         Secondary = 1,

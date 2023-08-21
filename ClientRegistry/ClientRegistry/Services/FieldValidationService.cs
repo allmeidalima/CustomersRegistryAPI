@@ -1,4 +1,5 @@
 ﻿using ClientRegistry.API.Interface;
+using ClientRegistry.API.Models.Register;
 using System.Text.RegularExpressions;
 
 namespace ClientRegistry.API.Models
@@ -12,17 +13,24 @@ namespace ClientRegistry.API.Models
             _decoratedService = decoratedService;
         }
 
-        public void CreateClient(Client client)
+        public void CreateClient(ClientRegisterRequest client)
         {
-            if (!IsValidEmail(client.Email))
+            client.Email.ForEach(email =>
             {
-                throw new Exception("Invalid email format.");
-            }
+                if (!IsValidEmail(email.Email))
+                {
+                    throw new Exception($"Invalid email {email.Email}");
+                }
+            });
 
-            if (!IsValidNumber(client.PhoneNumber))
+            client.PhoneNumber.ForEach(phoneNumber =>
             {
-                throw new Exception("Invalid email format.");
-            }
+                if (!IsValidNumber(phoneNumber.PhoneNumber))
+                {
+                    throw new Exception("Invalid email format.");
+                }
+            });
+
 
             _decoratedService.CreateClient(client);
         }

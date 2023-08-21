@@ -1,11 +1,11 @@
 ﻿using ClientRegistry.API.Interface;
-using ClientRegistry.API.Models;
+using ClientRegistry.API.Models.Register;
 
-namespace ClientRegistry.API
+namespace ClientRegistry.API.Services
 {
     public class ClientService : IClientService
     {
-        public void CreateClient(Client client)
+        public async Task CreateClient(ClientRegisterRequest client)
         {
             // Logic to create the client goes here
         }

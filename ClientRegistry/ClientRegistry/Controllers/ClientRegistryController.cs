@@ -1,5 +1,5 @@
 using ClientRegistry.API.Interface;
-using ClientRegistry.API.Models;
+using ClientRegistry.API.Models.Register;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientRegistry.Controllers
@@ -16,11 +16,11 @@ namespace ClientRegistry.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult CreateClient([FromBody] Client client)
+        public async Task<IActionResult> CreateClient([FromBody] ClientRegisterRequest client)
         {
             try
             {
-                _clientService.CreateClient(client);
+                await _clientService.CreateClient(client);
                 return Ok("Client created successfully.");
             }
             catch (Exception ex)

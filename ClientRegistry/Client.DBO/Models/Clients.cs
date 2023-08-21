@@ -8,7 +8,7 @@ namespace Client.DBO.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public  string Id { get; set; }
+        public int IdClient { get; set; }
 
         [Required]
         [MinLength(2)]
@@ -16,16 +16,13 @@ namespace Client.DBO.Models
         public string Name { get; set; }
 
         [Required]
-        [MinLength(5)]
+        [MinLength(2)]
         [MaxLength(120)]
-        public string Email { get; set; }
+        public string LastName { get; set; }
 
         [Required]
-        public string Address { get; set; }
+        public DateTime CreateDate { get; set; }
 
-        [Required]
-        [MinLength(10)]
-        [MaxLength(120)]
-        public string PhoneNumber { get; set; }
+
     }
 }

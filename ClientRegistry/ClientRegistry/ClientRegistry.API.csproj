@@ -11,7 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Folder Include="Models\Response\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client.DBO\Client.DBO.csproj" />
+    <ProjectReference Include="..\Common\Client.Common.csproj" />
   </ItemGroup>
 
 </Project>
