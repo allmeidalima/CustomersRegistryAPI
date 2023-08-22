@@ -1,30 +1,27 @@
 using ClientRegistry.API.Interface;
-using ClientRegistry.API.Models;
 using ClientRegistry.API.Models.Register;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientRegistry.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Customers")]
     public class ClientController : ControllerBase
     {
         private readonly IClientService _clientService;
-        private readonly FieldValidation _fieldValidation;
-        
 
-        public ClientController(IClientService clientService, FieldValidation fieldValidation)
+
+        public ClientController(IClientService clientService)
         {
             _clientService = clientService;
-            _fieldValidation = fieldValidation;
         }
 
-        [HttpPost("CustomerRegistration")]
+        [HttpPost]
+        [Route("CustomerRegistration")]
         public async Task<IActionResult> CreateClient([FromBody] ClientRegisterRequest client)
         {
             try
             {
-                await _fieldValidation.CreateClient(client);
                 await _clientService.CreateClient(client);
                 return Ok("Client created successfully.");
             }

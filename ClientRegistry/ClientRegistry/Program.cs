@@ -1,5 +1,6 @@
 using Client.DBO.Context;
-using Microsoft.EntityFrameworkCore;
+using ClientRegistry.API.Interface;
+using ClientRegistry.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,11 +9,12 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 
 builder.Services.AddDbContext<PrjContext>();
 
+builder.Services.AddScoped<IClientService, ClientService>();
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

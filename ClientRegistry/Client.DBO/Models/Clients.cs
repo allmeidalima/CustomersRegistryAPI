@@ -23,6 +23,9 @@ namespace Client.DBO.Models
         [Required]
         public DateTime CreateDate { get; set; }
 
-
+        // Navigation properties for related entities
+        public virtual ICollection<ClientsAddress> Addresses { get; set; }
+        public virtual ICollection<ClientsEmail> Emails { get; set; }
+        public virtual ICollection<ClientsPhoneNumber> PhoneNumbers { get; set; }
     }
 }

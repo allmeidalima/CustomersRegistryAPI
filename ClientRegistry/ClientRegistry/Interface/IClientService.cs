@@ -1,9 +1,11 @@
-﻿using ClientRegistry.API.Models.Register;
+﻿using Client.DBO.Models;
+using ClientRegistry.API.Models.Register;
 
 namespace ClientRegistry.API.Interface
 {
     public interface IClientService
     {
-        Task CreateClient(ClientRegisterRequest client);
+        Task<Clients> CreateClient(ClientRegisterRequest client);
+
     }
 }

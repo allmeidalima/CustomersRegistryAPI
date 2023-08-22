@@ -1,5 +1,6 @@
 ﻿using Client.DBO.Models;
 using ClientRegistry.API.Models;
+using ClientRegistry.API.Models.Register;
 
 namespace ClientRegistry.API.Mapper
 {
@@ -27,5 +28,54 @@ namespace ClientRegistry.API.Mapper
                 Number = entity2.Number,
             };
         }
+
+        public static Clients MapClientRequestToSQL(this ClientRegisterRequest model)
+        {
+            return new Clients
+            {
+                Name = model.Name,
+                LastName = model.LastName,
+                CreateDate = DateTime.Now,
+            };
+        }
+
+        public static ClientsEmail MapClientRequestEmailToSQL(this ClientEmailModel model, int id)
+        {
+            return new ClientsEmail
+            {
+                IdClient = id,
+                Priority = model.Priority,
+                TypeEmail = model.TypeEmail,
+                Email = model.Email,
+                CreateDate = DateTime.Now,
+            };
+        }
+
+        public static ClientsAddress MapClientRequestAddressToSQL(this ClientAddressModel model, int id)
+        {
+            return new ClientsAddress
+            {
+                IdClient = id,
+                Priority = model.Priority,
+                TypeAddress = model.TypeAddress,
+                Address = model.Address,
+                Neighborhood = model.Neighborhood,
+                Number = model.Number,
+                PostalCode = model.PostalCode,
+                CreateDate = DateTime.Now,
+            };
+        }
+
+        public static ClientsPhoneNumber MapClientRequestclientsPhoneNumberToSQL(this ClientPhoneNumberModel model, int id)
+        {
+            return new ClientsPhoneNumber
+            {
+                IdClient = id,
+                Priority = model.Priority,
+                PhoneNumber = model.PhoneNumber,
+                CreateDate = DateTime.Now,
+            };
+        }
+
     }
 }

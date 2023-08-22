@@ -32,7 +32,7 @@ namespace ClientRegistry.API.Models
             });
 
 
-            _decoratedService.CreateClient(client);
+            await _decoratedService.CreateClient(client);
         }
 
         private bool IsValidEmail(string email)

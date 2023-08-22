@@ -26,9 +26,6 @@ namespace Client.DBO.Models
         public TypeEmail TypeEmail { get; set; }
 
         [Required]
-        public string Description { get; set; }
-
-        [Required]
         public DateTime CreateDate { get; set; }
     }
 }

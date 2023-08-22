@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Client.DBO.Migrations
 {
     [DbContext(typeof(PrjContext))]
-    [Migration("20230821202831_initialCreate")]
-    partial class initialCreate
+    [Migration("20230822155542_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,10 +105,6 @@ namespace Client.DBO.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -163,7 +159,7 @@ namespace Client.DBO.Migrations
             modelBuilder.Entity("Client.DBO.Models.ClientsAddress", b =>
                 {
                     b.HasOne("Client.DBO.Models.Clients", "Clients")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -174,7 +170,7 @@ namespace Client.DBO.Migrations
             modelBuilder.Entity("Client.DBO.Models.ClientsEmail", b =>
                 {
                     b.HasOne("Client.DBO.Models.Clients", "Clients")
-                        .WithMany()
+                        .WithMany("Emails")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -185,12 +181,21 @@ namespace Client.DBO.Migrations
             modelBuilder.Entity("Client.DBO.Models.ClientsPhoneNumber", b =>
                 {
                     b.HasOne("Client.DBO.Models.Clients", "Clients")
-                        .WithMany()
+                        .WithMany("PhoneNumbers")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Clients");
+                });
+
+            modelBuilder.Entity("Client.DBO.Models.Clients", b =>
+                {
+                    b.Navigation("Addresses");
+
+                    b.Navigation("Emails");
+
+                    b.Navigation("PhoneNumbers");
                 });
 #pragma warning restore 612, 618
         }
