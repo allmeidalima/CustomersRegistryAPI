@@ -3,40 +3,45 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Client.DBO.Context
 {
-    public class SqlContext : DbContext
+    public class PrjContext : DbContext
     {
-        public SqlContext()
+        public PrjContext() { }
+
+        public PrjContext(DbContextOptions<PrjContext> options) : base(options)
         {
         }
-
-        public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
 
         public DbSet<Clients> Clients { get; set; }
 
-        public DbSet<ClientsAddress> ClientsAddress { get; set; }
+        public DbSet<ClientsAddress> ClientsAdresses { get; set; }
 
-        public DbSet<ClientsEmail> ClientsEmail { get; set; }
+        public DbSet<ClientsEmail> ClientsEmails { get; set; }
 
         public DbSet<ClientsPhoneNumber> ClientsPhoneNumbers { get; set; }
 
-        public override int SaveChanges()
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+            => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=teste;Trusted_Connection=True;TrustServerCertificate=True");
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
-            {
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
-                }
+            modelBuilder.Entity<ClientsAddress>()
+            .HasOne(ca => ca.Clients)
+            .WithMany(c => c.Addresses)
+            .HasForeignKey(ca => ca.IdClient);
 
-                if (entry.State == EntityState.Modified)
-                {
-                    entry.Property("DataCadastro").IsModified = false;
-                }
+            modelBuilder.Entity<ClientsEmail>()
+                .HasOne(ce => ce.Clients)
+                .WithMany(c => c.Emails)
+                .HasForeignKey(ce => ce.IdClient);
 
+            modelBuilder.Entity<ClientsPhoneNumber>()
+                .HasOne(cpn => cpn.Clients)
+                .WithMany(c => c.PhoneNumbers)
+                .HasForeignKey(cpn => cpn.IdClient);
 
-            }
-
-            return base.SaveChanges();
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PrjContext).Assembly);
         }
+
     }
 }

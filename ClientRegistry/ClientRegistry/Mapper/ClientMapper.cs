@@ -1,11 +1,13 @@
 ﻿using Client.DBO.Models;
 using ClientRegistry.API.Models;
+using ClientRegistry.API.Models.Register;
+using ClientRegistry.API.Models.Response;
 
 namespace ClientRegistry.API.Mapper
 {
     static class ClientMapper
     {
-        public static ClientModel MapClientsToClientModel(this Clients entity) 
+        public static ClientModel MapClientsToClientModel(this Clients entity)
         {
             return new ClientModel
             {
@@ -15,9 +17,9 @@ namespace ClientRegistry.API.Mapper
             };
         }
 
-        public static ClientInformationModel MapClientGeneralInformationClientInformationModel(this ClientsEmail entity1, ClientsAddress entity2, Clients entity3)
+        public static InformationsCustomersModel MapClientGeneralInformationClientInformationModel(ClientsEmail entity1, ClientsAddress entity2, Clients entity3)
         {
-            return new ClientInformationModel
+            return new InformationsCustomersModel
             {
                 IdClient = entity3.IdClient,
                 Name = entity3.Name,
@@ -27,5 +29,66 @@ namespace ClientRegistry.API.Mapper
                 Number = entity2.Number,
             };
         }
+
+        public static GetCustomersResponse MapClientsToGetCustomersResponse(this Clients model)
+        {
+            return new GetCustomersResponse
+            {
+                idCustomers = model.IdClient,
+                Name = model.Name,
+                LastName = model.LastName,
+                registrationDate = model.CreateDate,
+            };
+        }
+
+
+        public static Clients MapClientRequestToSQL(this ClientRegisterRequest model)
+        {
+            return new Clients
+            {
+                Name = model.Name,
+                LastName = model.LastName,
+                CreateDate = DateTime.Now,
+            };
+        }
+
+        public static ClientsEmail MapClientRequestEmailToSQL(this ClientEmailModel model, int id)
+        {
+            return new ClientsEmail
+            {
+                IdClient = id,
+                Priority = model.Priority,
+                TypeEmail = model.TypeEmail,
+                Email = model.Email,
+                CreateDate = DateTime.Now,
+            };
+        }
+
+        public static ClientsAddress MapClientRequestAddressToSQL(this ClientAddressModel model, int id)
+        {
+            return new ClientsAddress
+            {
+                IdClient = id,
+                Priority = model.Priority,
+                TypeAddress = model.TypeAddress,
+                Address = model.Address,
+                Neighborhood = model.Neighborhood,
+                Number = model.Number,
+                PostalCode = model.PostalCode,
+                CreateDate = DateTime.Now,
+            };
+        }
+
+        public static ClientsPhoneNumber MapClientRequestclientsPhoneNumberToSQL(this ClientPhoneNumberModel model, int id)
+        {
+            return new ClientsPhoneNumber
+            {
+                IdClient = id,
+                Priority = model.Priority,
+                PhoneNumber = model.PhoneNumber,
+                CreateDate = DateTime.Now,
+            };
+        }
+
     }
 }

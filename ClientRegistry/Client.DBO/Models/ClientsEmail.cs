@@ -13,7 +13,7 @@ namespace Client.DBO.Models
 
         [Required]
         [ForeignKey("Clients")]
-        public string IdClient { get; set; }
+        public int IdClient { get; set; }
         public virtual Clients Clients { get; set; }
 
         [Required]
@@ -24,9 +24,6 @@ namespace Client.DBO.Models
 
         [Required]
         public TypeEmail TypeEmail { get; set; }
-
-        [Required]
-        public string Description { get; set; }
 
         [Required]
         public DateTime CreateDate { get; set; }
