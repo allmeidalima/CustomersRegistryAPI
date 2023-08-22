@@ -1,5 +1,6 @@
 using Client.DBO.Context;
 using ClientRegistry.API.Interface;
+using ClientRegistry.API.Models;
 using ClientRegistry.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,9 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 builder.Services.AddDbContext<PrjContext>();
 
 builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IGetCustomersService, ClientService>();
+builder.Services.AddScoped<IInformantionsCustomersService, ClientService>();
+builder.Services.AddScoped<FieldValidation>();
 
 // Add services to the container.
 builder.Services.AddControllers();

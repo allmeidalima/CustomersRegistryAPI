@@ -1,6 +1,7 @@
 ﻿using Client.DBO.Models;
 using ClientRegistry.API.Models;
 using ClientRegistry.API.Models.Register;
+using ClientRegistry.API.Models.Response;
 
 namespace ClientRegistry.API.Mapper
 {
@@ -16,9 +17,9 @@ namespace ClientRegistry.API.Mapper
             };
         }
 
-        public static ClientInformationModel MapClientGeneralInformationClientInformationModel(this ClientsEmail entity1, ClientsAddress entity2, Clients entity3)
+        public static InformationsCustomersModel MapClientGeneralInformationClientInformationModel(ClientsEmail entity1, ClientsAddress entity2, Clients entity3)
         {
-            return new ClientInformationModel
+            return new InformationsCustomersModel
             {
                 IdClient = entity3.IdClient,
                 Name = entity3.Name,
@@ -28,6 +29,18 @@ namespace ClientRegistry.API.Mapper
                 Number = entity2.Number,
             };
         }
+
+        public static GetCustomersResponse MapClientsToGetCustomersResponse(this Clients model)
+        {
+            return new GetCustomersResponse
+            {
+                idCustomers = model.IdClient,
+                Name = model.Name,
+                LastName = model.LastName,
+                registrationDate = model.CreateDate,
+            };
+        }
+
 
         public static Clients MapClientRequestToSQL(this ClientRegisterRequest model)
         {

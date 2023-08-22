@@ -1,13 +1,17 @@
-﻿using Client.DBO.Context;
+﻿using Client.Common.Enum;
+using Client.DBO.Context;
 using Client.DBO.Models;
 using ClientRegistry.API.Interface;
 using ClientRegistry.API.Mapper;
 using ClientRegistry.API.Models;
 using ClientRegistry.API.Models.Register;
+using ClientRegistry.API.Models.Request;
+using ClientRegistry.API.Models.Response;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientRegistry.API.Services
 {
-    public class ClientService : IClientService
+    public class ClientService : IClientService, IGetCustomersService, IInformantionsCustomersService
     {
         private readonly PrjContext _prjContext;
 
@@ -71,5 +75,38 @@ namespace ClientRegistry.API.Services
             await _prjContext.ClientsPhoneNumbers.AddRangeAsync(clientsPhoneNumber);
             await _prjContext.SaveChangesAsync();
         }
+
+        public async Task<List<GetCustomersResponse>> GetCustomers()
+        {
+            var customers = await _prjContext.Clients
+            .Select(x => x.MapClientsToGetCustomersResponse())
+            .ToListAsync();
+
+            return customers;
+        }
+
+        public async Task<InformationsCustomersModel> GetInformationsCustomers(InformationsCustomersRequest request)
+        {
+            var customerInformation = await _prjContext.Clients
+            .Where(x => x.IdClient == request.IdCustomer && x.Name == request.CustomerName)
+            .Include(x => x.Addresses)
+            .Include(x => x.Emails)     
+            .FirstOrDefaultAsync();
+
+            if (customerInformation != null)
+            {
+                var principalAddress = customerInformation.Addresses.FirstOrDefault(a => a.Priority == TypePriority.Principal);
+                var principalEmail = customerInformation.Emails.FirstOrDefault(e => e.Priority == TypePriority.Principal);
+
+                if (principalAddress != null && principalEmail != null)
+                {
+                    var informationsModel = ClientMapper.MapClientGeneralInformationClientInformationModel(principalEmail, principalAddress, customerInformation);
+
+                    return informationsModel;
+                }
+            }
+            return null;
+        }
+
     }
 }

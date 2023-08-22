@@ -7,6 +7,8 @@ namespace ClientRegistry.API.Models
     public class FieldValidation
     {
         private readonly IClientService _decoratedService;
+        const string EmailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+        const string PhoneNumberPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
 
         public FieldValidation(IClientService decoratedService)
         {
@@ -37,7 +39,7 @@ namespace ClientRegistry.API.Models
 
         private bool IsValidEmail(string email)
         {
-            string emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+            string emailPattern = EmailPattern;
 
             bool isValid = Regex.IsMatch(email, emailPattern);
 
@@ -46,7 +48,7 @@ namespace ClientRegistry.API.Models
 
         private bool IsValidNumber(string number)
         {
-            string numberPattern = @"^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$";
+            string numberPattern = PhoneNumberPattern;
 
             bool isValid = Regex.IsMatch(number, numberPattern);
 
