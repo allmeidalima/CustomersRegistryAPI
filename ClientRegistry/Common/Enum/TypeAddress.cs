@@ -1,4 +1,4 @@
-﻿namespace ClientRegistry.API.Enum
+﻿namespace Client.Common.Enum
 {
     public enum TypeAddress
     {
