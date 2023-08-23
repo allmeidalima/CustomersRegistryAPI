@@ -2,7 +2,7 @@
 
 namespace ClientRegistry.API.Models
 {
-    public class ClientAddressModel
+    public class CustomerAddressModel
     {
         public TypePriority Priority { get; set; }
         public TypeAddress TypeAddress { get; set; }

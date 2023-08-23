@@ -6,16 +6,16 @@ namespace ClientRegistry.API.Models
 {
     public class FieldValidation
     {
-        private readonly IClientService _decoratedService;
+        private readonly ICustomerService _decoratedService;
         const string EmailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         const string PhoneNumberPattern = @"^\(?[1-9]{2}\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$";
 
-        public FieldValidation(IClientService decoratedService)
+        public FieldValidation(ICustomerService decoratedService)
         {
             _decoratedService = decoratedService;
         }
 
-        public async Task CreateClient(ClientRegisterRequest client)
+        public async Task CreateCustomer(CustomerRegisterRequest client)
         {
             client.Email.ForEach(email =>
             {
@@ -34,7 +34,7 @@ namespace ClientRegistry.API.Models
             });
 
 
-            await _decoratedService.CreateClient(client);
+            await _decoratedService.CreateCustomer(client);
         }
 
         public bool IsValidEmail(string email)

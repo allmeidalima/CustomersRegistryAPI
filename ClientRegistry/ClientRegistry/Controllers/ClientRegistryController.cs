@@ -8,13 +8,13 @@ namespace ClientRegistry.Controllers
 {
     [ApiController]
     [Route("api/Customers")]
-    public class ClientController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         private readonly FieldValidation _fieldValidation;
         private readonly IGetCustomersService _getCustomersService;
         private readonly IInformantionsCustomersService _informantionsService;
 
-        public ClientController(FieldValidation fieldValidation, IGetCustomersService getCustomersService, IInformantionsCustomersService informantionsService)
+        public CustomerController(FieldValidation fieldValidation, IGetCustomersService getCustomersService, IInformantionsCustomersService informantionsService)
         {
             _fieldValidation = fieldValidation;
             _getCustomersService = getCustomersService;
@@ -23,11 +23,11 @@ namespace ClientRegistry.Controllers
 
         [HttpPost]
         [Route("CustomerRegistration")]
-        public async Task<IActionResult> CreateClient([FromBody] ClientRegisterRequest client)
+        public async Task<IActionResult> CreateClient([FromBody] CustomerRegisterRequest client)
         {
             try
             {
-                await _fieldValidation.CreateClient(client);
+                await _fieldValidation.CreateCustomer(client);
 
                 return Ok("Client created successfully.");
             }
@@ -53,11 +53,11 @@ namespace ClientRegistry.Controllers
         }
 
         [HttpPost("ConsultCustomers")]
-        public async Task<IActionResult> ConsultCustomers([FromBody] InformationsCustomersRequest clientInformation)
+        public async Task<IActionResult> ConsultCustomers([FromBody] InformationsCustomersRequest customerInformation)
         {
             try
             {
-                var informations = await _informantionsService.GetInformationsCustomers(clientInformation);
+                var informations = await _informantionsService.GetInformationsCustomers(customerInformation);
                 return Ok(informations);
             }
             catch (Exception ex)

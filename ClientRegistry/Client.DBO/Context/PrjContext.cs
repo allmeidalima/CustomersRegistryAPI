@@ -12,32 +12,32 @@ namespace Client.DBO.Context
         {
         }
 
-        public DbSet<Clients> Clients { get; set; }
+        public DbSet<RegisteredCustomer> RegisteredCustomer { get; set; }
 
-        public DbSet<ClientsAddress> ClientsAdresses { get; set; }
+        public DbSet<CustomerAdresses> CustomerAdresses { get; set; }
 
-        public DbSet<ClientsEmail> ClientsEmails { get; set; }
+        public DbSet<CustomerEmails> CustomerEmails { get; set; }
 
-        public DbSet<ClientsPhoneNumber> ClientsPhoneNumbers { get; set; }
+        public DbSet<CustomerPhoneNumbers> CustomerPhoneNumbers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=teste;Trusted_Connection=True;TrustServerCertificate=True");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ClientsAddress>()
+            modelBuilder.Entity<CustomerAdresses>()
             .HasOne(ca => ca.Clients)
-            .WithMany(c => c.Addresses)
+            .WithMany(c => c.CustomerAdresses)
             .HasForeignKey(ca => ca.IdClient);
 
-            modelBuilder.Entity<ClientsEmail>()
+            modelBuilder.Entity<CustomerEmails>()
                 .HasOne(ce => ce.Clients)
-                .WithMany(c => c.Emails)
+                .WithMany(c => c.CustomerEmails)
                 .HasForeignKey(ce => ce.IdClient);
 
-            modelBuilder.Entity<ClientsPhoneNumber>()
+            modelBuilder.Entity<CustomerPhoneNumbers>()
                 .HasOne(cpn => cpn.Clients)
-                .WithMany(c => c.PhoneNumbers)
+                .WithMany(c => c.CustomerPhoneNumbers)
                 .HasForeignKey(cpn => cpn.IdClient);
 
             base.OnModelCreating(modelBuilder);

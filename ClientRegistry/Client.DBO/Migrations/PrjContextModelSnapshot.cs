@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Client.DBO.Migrations
+namespace Customer.DBO.Migrations
 {
     [DbContext(typeof(PrjContext))]
     partial class PrjContextModelSnapshot : ModelSnapshot
@@ -22,33 +22,7 @@ namespace Client.DBO.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Client.DBO.Models.Clients", b =>
-                {
-                    b.Property<int>("IdClient")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClient"));
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(120)
-                        .HasColumnType("nvarchar(120)");
-
-                    b.HasKey("IdClient");
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("Client.DBO.Models.ClientsAddress", b =>
+            modelBuilder.Entity("Client.DBO.Models.CustomerAdresses", b =>
                 {
                     b.Property<int>("IdClientAddress")
                         .ValueGeneratedOnAdd()
@@ -91,7 +65,7 @@ namespace Client.DBO.Migrations
                     b.ToTable("ClientAddress");
                 });
 
-            modelBuilder.Entity("Client.DBO.Models.ClientsEmail", b =>
+            modelBuilder.Entity("Client.DBO.Models.CustomerEmails", b =>
                 {
                     b.Property<int>("IdClientEmail")
                         .ValueGeneratedOnAdd()
@@ -122,7 +96,7 @@ namespace Client.DBO.Migrations
                     b.ToTable("ClientsEmail");
                 });
 
-            modelBuilder.Entity("Client.DBO.Models.ClientsPhoneNumber", b =>
+            modelBuilder.Entity("Client.DBO.Models.CustomerPhoneNumbers", b =>
                 {
                     b.Property<int>("IdPhoneNumber")
                         .ValueGeneratedOnAdd()
@@ -153,10 +127,36 @@ namespace Client.DBO.Migrations
                     b.ToTable("ClientsPhoneNumber");
                 });
 
-            modelBuilder.Entity("Client.DBO.Models.ClientsAddress", b =>
+            modelBuilder.Entity("Client.DBO.Models.RegisteredCustomer", b =>
                 {
-                    b.HasOne("Client.DBO.Models.Clients", "Clients")
-                        .WithMany("Addresses")
+                    b.Property<int>("IdCustomer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCustomer"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
+
+                    b.HasKey("IdCustomer");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Client.DBO.Models.CustomerAdresses", b =>
+                {
+                    b.HasOne("Client.DBO.Models.RegisteredCustomer", "Clients")
+                        .WithMany("CustomerAdresses")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -164,10 +164,10 @@ namespace Client.DBO.Migrations
                     b.Navigation("Clients");
                 });
 
-            modelBuilder.Entity("Client.DBO.Models.ClientsEmail", b =>
+            modelBuilder.Entity("Client.DBO.Models.CustomerEmails", b =>
                 {
-                    b.HasOne("Client.DBO.Models.Clients", "Clients")
-                        .WithMany("Emails")
+                    b.HasOne("Client.DBO.Models.RegisteredCustomer", "Clients")
+                        .WithMany("CustomerEmails")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -175,10 +175,10 @@ namespace Client.DBO.Migrations
                     b.Navigation("Clients");
                 });
 
-            modelBuilder.Entity("Client.DBO.Models.ClientsPhoneNumber", b =>
+            modelBuilder.Entity("Client.DBO.Models.CustomerPhoneNumbers", b =>
                 {
-                    b.HasOne("Client.DBO.Models.Clients", "Clients")
-                        .WithMany("PhoneNumbers")
+                    b.HasOne("Client.DBO.Models.RegisteredCustomer", "Clients")
+                        .WithMany("CustomerPhoneNumbers")
                         .HasForeignKey("IdClient")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -186,13 +186,13 @@ namespace Client.DBO.Migrations
                     b.Navigation("Clients");
                 });
 
-            modelBuilder.Entity("Client.DBO.Models.Clients", b =>
+            modelBuilder.Entity("Client.DBO.Models.RegisteredCustomer", b =>
                 {
-                    b.Navigation("Addresses");
+                    b.Navigation("CustomerAdresses");
 
-                    b.Navigation("Emails");
+                    b.Navigation("CustomerEmails");
 
-                    b.Navigation("PhoneNumbers");
+                    b.Navigation("CustomerPhoneNumbers");
                 });
 #pragma warning restore 612, 618
         }

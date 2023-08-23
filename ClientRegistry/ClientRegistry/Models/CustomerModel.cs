@@ -1,6 +1,6 @@
 ﻿namespace ClientRegistry.API.Models
 {
-    public class ClientModel
+    public class CustomerModel
     {
         public int IdClient { get; set; }
         public string Name { get; set; }

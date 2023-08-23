@@ -4,26 +4,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Client.DBO.Models
 {
-    [Table("ClientsPhoneNumber")]
-    public class ClientsPhoneNumber
+    [Table("ClientsEmail")]
+    public class CustomerEmails
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdPhoneNumber { get; set; }
+        public int IdClientEmail { get; set; }
 
         [Required]
         [ForeignKey("Clients")]
         public int IdClient { get; set; }
-        public virtual Clients Clients { get; set; }
+        public virtual RegisteredCustomer Clients { get; set; }
 
         [Required]
-        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
 
         [Required]
         public TypePriority Priority { get; set; }
 
         [Required]
-        public TypePhoneNumber TypePhoneNumber { get; set; }
+        public TypeEmail TypeEmail { get; set; }
 
         [Required]
         public DateTime CreateDate { get; set; }

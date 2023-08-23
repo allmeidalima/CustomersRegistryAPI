@@ -8,13 +8,13 @@ namespace ClientRegistry.API.Test
     public class FieldValidationServiceTest : MockingTests
     {
         private FieldValidation _fieldValidation;
-        private Mock<IClientService> _mockClientService;
+        private Mock<ICustomerService> _mockClientService;
 
 
         [SetUp]
         public void Setup()
         {
-            _mockClientService = new Mock<IClientService>();
+            _mockClientService = new Mock<ICustomerService>();
             _mockClientService.SetupAllProperties();
             _fieldValidation = new FieldValidation(_mockClientService.Object);
 
@@ -27,7 +27,7 @@ namespace ClientRegistry.API.Test
             var request = CreateClientRegisterInvalidRequest();
 
             // Act & Assert
-            _mockClientService.Verify(service => service.CreateClient(It.IsAny<ClientRegisterRequest>()), Times.Never);
+            _mockClientService.Verify(service => service.CreateCustomer(It.IsAny<CustomerRegisterRequest>()), Times.Never);
         }
 
         [TestCase("teste.email@gmail.com")]

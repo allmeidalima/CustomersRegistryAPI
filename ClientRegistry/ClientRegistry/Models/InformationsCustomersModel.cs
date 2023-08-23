@@ -2,7 +2,7 @@
 {
     public class InformationsCustomersModel
     {
-        public int IdClient { get; set; }
+        public int IdCustomer { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Neighborhood { get; set; }

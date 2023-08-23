@@ -3,8 +3,8 @@ using ClientRegistry.API.Models.Register;
 
 namespace ClientRegistry.API.Interface
 {
-    public interface IClientService
+    public interface ICustomerService
     {
-        Task<Clients> CreateClient(ClientRegisterRequest client);
+        Task<RegisteredCustomer> CreateCustomer(CustomerRegisterRequest client);
     }
 }

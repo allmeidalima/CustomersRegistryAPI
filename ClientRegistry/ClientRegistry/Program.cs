@@ -10,9 +10,9 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 
 builder.Services.AddDbContext<PrjContext>();
 
-builder.Services.AddScoped<IClientService, ClientService>();
-builder.Services.AddScoped<IGetCustomersService, ClientService>();
-builder.Services.AddScoped<IInformantionsCustomersService, ClientService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IGetCustomersService, CustomerService>();
+builder.Services.AddScoped<IInformantionsCustomersService, CustomerService>();
 builder.Services.AddScoped<FieldValidation>();
 
 // Add services to the container.
