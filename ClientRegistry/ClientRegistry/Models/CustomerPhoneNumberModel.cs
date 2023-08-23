@@ -2,7 +2,7 @@
 
 namespace ClientRegistry.API.Models
 {
-    public class ClientPhoneNumberModel
+    public class CustomerPhoneNumberModel
     {
         public string PhoneNumber { get; set; }
         public TypePriority Priority { get; set; }

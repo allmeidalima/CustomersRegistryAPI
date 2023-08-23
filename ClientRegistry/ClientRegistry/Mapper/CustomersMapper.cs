@@ -5,23 +5,24 @@ using ClientRegistry.API.Models.Response;
 
 namespace ClientRegistry.API.Mapper
 {
-    static class ClientMapper
+    static class CustomersMapper
     {
-        public static ClientModel MapClientsToClientModel(this Clients entity)
+        #region [Map To Models]
+        public static CustomerModel MapClientsToClientModel(this RegisteredCustomer entity)
         {
-            return new ClientModel
+            return new CustomerModel
             {
-                IdClient = entity.IdClient,
+                IdClient = entity.IdCustomer,
                 Name = entity.Name,
                 LastName = entity.LastName,
             };
         }
 
-        public static InformationsCustomersModel MapClientGeneralInformationClientInformationModel(ClientsEmail entity1, ClientsAddress entity2, Clients entity3)
+        public static InformationsCustomersModel MapClientGeneralInformationClientInformationModel(CustomerEmails entity1, CustomerAdresses entity2, RegisteredCustomer entity3)
         {
             return new InformationsCustomersModel
             {
-                IdClient = entity3.IdClient,
+                IdCustomer = entity3.IdCustomer,
                 Name = entity3.Name,
                 Email = entity1.Email,
                 Address = entity2.Address,
@@ -30,21 +31,22 @@ namespace ClientRegistry.API.Mapper
             };
         }
 
-        public static GetCustomersResponse MapClientsToGetCustomersResponse(this Clients model)
+        public static GetCustomersResponse MapClientsToGetCustomersResponse(this RegisteredCustomer model)
         {
             return new GetCustomersResponse
             {
-                idCustomers = model.IdClient,
+                idCustomers = model.IdCustomer,
                 Name = model.Name,
                 LastName = model.LastName,
                 registrationDate = model.CreateDate,
             };
         }
+        #endregion
 
-
-        public static Clients MapClientRequestToSQL(this ClientRegisterRequest model)
+        #region [Map To SQL]
+        public static RegisteredCustomer MapClientRequestToSQL(this CustomerRegisterRequest model)
         {
-            return new Clients
+            return new RegisteredCustomer
             {
                 Name = model.Name,
                 LastName = model.LastName,
@@ -52,9 +54,9 @@ namespace ClientRegistry.API.Mapper
             };
         }
 
-        public static ClientsEmail MapClientRequestEmailToSQL(this ClientEmailModel model, int id)
+        public static CustomerEmails MapClientRequestEmailToSQL(this CustomerEmailModel model, int id)
         {
-            return new ClientsEmail
+            return new CustomerEmails
             {
                 IdClient = id,
                 Priority = model.Priority,
@@ -64,9 +66,9 @@ namespace ClientRegistry.API.Mapper
             };
         }
 
-        public static ClientsAddress MapClientRequestAddressToSQL(this ClientAddressModel model, int id)
+        public static CustomerAdresses MapClientRequestAddressToSQL(this CustomerAddressModel model, int id)
         {
-            return new ClientsAddress
+            return new CustomerAdresses
             {
                 IdClient = id,
                 Priority = model.Priority,
@@ -79,9 +81,9 @@ namespace ClientRegistry.API.Mapper
             };
         }
 
-        public static ClientsPhoneNumber MapClientRequestclientsPhoneNumberToSQL(this ClientPhoneNumberModel model, int id)
+        public static CustomerPhoneNumbers MapClientRequestclientsPhoneNumberToSQL(this CustomerPhoneNumberModel model, int id)
         {
-            return new ClientsPhoneNumber
+            return new CustomerPhoneNumbers
             {
                 IdClient = id,
                 Priority = model.Priority,
@@ -89,6 +91,7 @@ namespace ClientRegistry.API.Mapper
                 CreateDate = DateTime.Now,
             };
         }
+        #endregion
 
     }
 }

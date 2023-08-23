@@ -10,17 +10,17 @@ namespace ClientRegistry.API.Test
 {
     public class ControllersTest : MockingTests
     {
-        private ClientController _clientController;
+        private CustomerController _clientController;
         private FieldValidation _fieldValidation;
         private Mock<IGetCustomersService> _mockGetCustomersService;
         private Mock<IInformantionsCustomersService> _mockInformantionsCustomersService;
-        private Mock<IClientService> _mockClientService;
+        private Mock<ICustomerService> _mockClientService;
 
 
         [SetUp]
         public void Setup()
         {
-            _mockClientService = new Mock<IClientService>();
+            _mockClientService = new Mock<ICustomerService>();
             _mockClientService.SetupAllProperties();
             _mockGetCustomersService = new Mock<IGetCustomersService>();
             _mockGetCustomersService.SetupAllProperties();
@@ -28,14 +28,14 @@ namespace ClientRegistry.API.Test
             _mockInformantionsCustomersService.SetupAllProperties();
             _fieldValidation = new FieldValidation(_mockClientService.Object);
 
-            _clientController = new ClientController(_fieldValidation, _mockGetCustomersService.Object, _mockInformantionsCustomersService.Object);
+            _clientController = new CustomerController(_fieldValidation, _mockGetCustomersService.Object, _mockInformantionsCustomersService.Object);
         }
 
         [Test]
         public async Task CreateClient_ShouldGetRequestAndAddOnServer()
         {
             //Arrange
-            ClientRegisterRequest request = CreateClientRegisterRequest();
+            CustomerRegisterRequest request = CreateClientRegisterRequest();
 
             //Act
             IActionResult response = await _clientController.CreateClient(request);

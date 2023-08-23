@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Client.DBO.Models
 {
     [Table("ClientAddress")]
-    public class ClientsAddress
+    public class CustomerAdresses
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,7 +14,7 @@ namespace Client.DBO.Models
         [Required]
         [ForeignKey("Clients")]
         public int IdClient { get; set; }
-        public virtual Clients Clients { get; set; }
+        public virtual RegisteredCustomer Clients { get; set; }
 
         [Required]
         public TypePriority Priority { get; set; }

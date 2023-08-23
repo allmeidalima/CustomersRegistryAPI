@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Client.DBO.Migrations
+namespace Customer.DBO.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class release01 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -14,7 +15,7 @@ namespace Client.DBO.Migrations
                 name: "Clients",
                 columns: table => new
                 {
-                    IdClient = table.Column<int>(type: "int", nullable: false)
+                    IdCustomer = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
@@ -22,7 +23,7 @@ namespace Client.DBO.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.IdClient);
+                    table.PrimaryKey("PK_Clients", x => x.IdCustomer);
                 });
 
             migrationBuilder.CreateTable(
@@ -47,7 +48,7 @@ namespace Client.DBO.Migrations
                         name: "FK_ClientAddress_Clients_IdClient",
                         column: x => x.IdClient,
                         principalTable: "Clients",
-                        principalColumn: "IdClient",
+                        principalColumn: "IdCustomer",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -70,7 +71,7 @@ namespace Client.DBO.Migrations
                         name: "FK_ClientsEmail_Clients_IdClient",
                         column: x => x.IdClient,
                         principalTable: "Clients",
-                        principalColumn: "IdClient",
+                        principalColumn: "IdCustomer",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -93,7 +94,7 @@ namespace Client.DBO.Migrations
                         name: "FK_ClientsPhoneNumber_Clients_IdClient",
                         column: x => x.IdClient,
                         principalTable: "Clients",
-                        principalColumn: "IdClient",
+                        principalColumn: "IdCustomer",
                         onDelete: ReferentialAction.Cascade);
                 });
 

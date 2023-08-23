@@ -14,11 +14,11 @@ namespace ClientRegistry.API.Test
 
         }
 
-        public ClientRegisterRequest CreateClientRegisterRequest()
+        public CustomerRegisterRequest CreateClientRegisterRequest()
         {
-            List<ClientEmailModel> email = new List<ClientEmailModel>()
+            List<CustomerEmailModel> email = new List<CustomerEmailModel>()
             {
-                new ClientEmailModel()
+                new CustomerEmailModel()
                 {
                     TypeEmail = 0,
                     Priority = 0,
@@ -26,9 +26,9 @@ namespace ClientRegistry.API.Test
                 }
             };
 
-            List<ClientAddressModel> address = new List<ClientAddressModel>()
+            List<CustomerAddressModel> address = new List<CustomerAddressModel>()
             {
-                new ClientAddressModel()
+                new CustomerAddressModel()
                 {
                     Priority = 0,
                     TypeAddress = 0,
@@ -39,9 +39,9 @@ namespace ClientRegistry.API.Test
                 }
             };
 
-            List<ClientPhoneNumberModel> phoneNumber = new List<ClientPhoneNumberModel>()
+            List<CustomerPhoneNumberModel> phoneNumber = new List<CustomerPhoneNumberModel>()
             {
-                new ClientPhoneNumberModel()
+                new CustomerPhoneNumberModel()
                 {
                     Priority = 0,
                     TypePhoneNumber = 0,
@@ -49,7 +49,7 @@ namespace ClientRegistry.API.Test
                 }
             };
 
-            return new ClientRegisterRequest()
+            return new CustomerRegisterRequest()
             {
                 Name = "Lucas",
                 LastName = "Lima",
@@ -60,11 +60,11 @@ namespace ClientRegistry.API.Test
         }
 
 
-        public ClientRegisterRequest CreateClientRegisterInvalidRequest()
+        public CustomerRegisterRequest CreateClientRegisterInvalidRequest()
         {
-            List<ClientEmailModel> email = new List<ClientEmailModel>()
+            List<CustomerEmailModel> email = new List<CustomerEmailModel>()
             {
-                new ClientEmailModel()
+                new CustomerEmailModel()
                 {
                     TypeEmail = 0,
                     Priority = 0,
@@ -72,9 +72,9 @@ namespace ClientRegistry.API.Test
                 }
             };
 
-            List<ClientAddressModel> address = new List<ClientAddressModel>()
+            List<CustomerAddressModel> address = new List<CustomerAddressModel>()
             {
-                new ClientAddressModel()
+                new CustomerAddressModel()
                 {
                     Priority = 0,
                     TypeAddress = 0,
@@ -85,9 +85,9 @@ namespace ClientRegistry.API.Test
                 }
             };
 
-            List<ClientPhoneNumberModel> phoneNumber = new List<ClientPhoneNumberModel>()
+            List<CustomerPhoneNumberModel> phoneNumber = new List<CustomerPhoneNumberModel>()
             {
-                new ClientPhoneNumberModel()
+                new CustomerPhoneNumberModel()
                 {
                     Priority = 0,
                     TypePhoneNumber = 0,
@@ -95,7 +95,7 @@ namespace ClientRegistry.API.Test
                 }
             };
 
-            return new ClientRegisterRequest()
+            return new CustomerRegisterRequest()
             {
                 Name = "Lucas",
                 LastName = "Lima",
@@ -114,9 +114,9 @@ namespace ClientRegistry.API.Test
             };
         }
 
-        public static Clients MapClientRequestToSQL(ClientRegisterRequest model)
+        public static RegisteredCustomer MapClientRequestToSQL(CustomerRegisterRequest model)
         {
-            return new Clients
+            return new RegisteredCustomer
             {
                 Name = model.Name,
                 LastName = model.LastName,

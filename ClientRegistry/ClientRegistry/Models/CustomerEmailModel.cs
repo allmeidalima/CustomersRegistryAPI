@@ -2,7 +2,7 @@
 
 namespace ClientRegistry.API.Models
 {
-    public class ClientEmailModel
+    public class CustomerEmailModel
     {
         public TypePriority Priority { get; set; }
         public TypeEmail TypeEmail { get; set; }

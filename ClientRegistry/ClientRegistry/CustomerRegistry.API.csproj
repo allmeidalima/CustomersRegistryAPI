@@ -26,8 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client.DBO\Client.DBO.csproj" />
-    <ProjectReference Include="..\Common\Client.Common.csproj" />
+    <ProjectReference Include="..\Client.DBO\Customer.DBO.csproj" />
+    <ProjectReference Include="..\Common\Customer.Common.csproj" />
   </ItemGroup>
 
 </Project>
