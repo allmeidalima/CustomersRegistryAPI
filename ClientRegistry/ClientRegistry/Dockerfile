@@ -7,18 +7,18 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["ClientRegistry/ClientRegistry.API.csproj", "ClientRegistry/"]
-COPY ["Client.DBO/Client.DBO.csproj", "Client.DBO/"]
-COPY ["Common/Client.Common.csproj", "Common/"]
-RUN dotnet restore "ClientRegistry/ClientRegistry.API.csproj"
+COPY ["ClientRegistry/CustomerRegistry.API.csproj", "ClientRegistry/"]
+COPY ["Client.DBO/Customer.DBO.csproj", "Client.DBO/"]
+COPY ["Common/Customer.Common.csproj", "Common/"]
+RUN dotnet restore "ClientRegistry/CustomerRegistry.API.csproj"
 COPY . .
 WORKDIR "/src/ClientRegistry"
-RUN dotnet build "ClientRegistry.API.csproj" -c Release -o /app/build
+RUN dotnet build "CustomerRegistry.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ClientRegistry.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "CustomerRegistry.API.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ClientRegistry.API.dll"]
+ENTRYPOINT ["dotnet", "CustomerRegistry.API.dll"]

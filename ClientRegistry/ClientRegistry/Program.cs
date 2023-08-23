@@ -2,18 +2,19 @@ using Client.DBO.Context;
 using ClientRegistry.API.Interface;
 using ClientRegistry.API.Models;
 using ClientRegistry.API.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add configuration
-builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 
-builder.Services.AddDbContext<PrjContext>();
+var conect = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<PrjContext>(options =>
+                options.UseSqlServer(conect));
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IGetCustomersService, CustomerService>();
-builder.Services.AddScoped<IInformantionsCustomersService, CustomerService>();
-builder.Services.AddScoped<FieldValidation>();
+builder.Services.Decorate<ICustomerService, FieldValidation>();
 
 // Add services to the container.
 builder.Services.AddControllers();

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ClientRegistry.API.Services
 {
-    public class CustomerService : ICustomerService, IGetCustomersService, IInformantionsCustomersService
+    public class CustomerService : ICustomerService, IGetCustomersService
     {
         private readonly PrjContext _prjContext;
 

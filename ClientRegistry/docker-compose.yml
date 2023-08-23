@@ -1,21 +1,22 @@
-version: '3.8'
+version: '3.4'
 
 services:
-  clientregistry.api:
-    image: clientregistryapi
+  customerregistry.api:
+    image: ${DOCKER_REGISTRY-}customerregistryapi
     build:
       context: .
       dockerfile: ClientRegistry/Dockerfile
-    ports:
-      - "8000:80"
-    depends_on:
-      - sqlserver
     environment:
-      - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
-
+         - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=teste;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True
   sqlserver:
     image: mcr.microsoft.com/mssql/server
     environment:
+      MSSQL_SA_PASSWORD: "yourStrong(!)Password"
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+
+  redis:
+    image: redis:latest
+    ports:
+    - "6379:6379"

@@ -20,8 +20,8 @@ namespace Client.DBO.Context
 
         public DbSet<CustomerPhoneNumbers> CustomerPhoneNumbers { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=teste;Trusted_Connection=True;TrustServerCertificate=True");
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //    => options.UseSqlServer("Server=sqlserver:1433;Database=teste;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

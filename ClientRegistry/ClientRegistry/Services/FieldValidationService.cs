@@ -1,10 +1,11 @@
-﻿using ClientRegistry.API.Interface;
+﻿using Client.DBO.Models;
+using ClientRegistry.API.Interface;
 using ClientRegistry.API.Models.Register;
 using System.Text.RegularExpressions;
 
 namespace ClientRegistry.API.Models
 {
-    public class FieldValidation
+    public class FieldValidation : ICustomerService
     {
         private readonly ICustomerService _decoratedService;
         const string EmailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
@@ -15,7 +16,7 @@ namespace ClientRegistry.API.Models
             _decoratedService = decoratedService;
         }
 
-        public async Task CreateCustomer(CustomerRegisterRequest client)
+        public async Task<RegisteredCustomer> CreateCustomer(CustomerRegisterRequest client)
         {
             client.Email.ForEach(email =>
             {
@@ -34,21 +35,17 @@ namespace ClientRegistry.API.Models
             });
 
 
-            await _decoratedService.CreateCustomer(client);
+            return await _decoratedService.CreateCustomer(client);
         }
 
         public bool IsValidEmail(string email)
         {
-            bool isValid = Regex.IsMatch(email, EmailPattern);
-
-            return isValid;
+            return !string.IsNullOrEmpty(email) ? Regex.IsMatch(email, EmailPattern) : false;
         }
 
         public bool IsValidNumber(string number)
         {
-            bool isValid = Regex.IsMatch(number, PhoneNumberPattern);
-
-            return isValid;
+            return !string.IsNullOrEmpty(number) ? Regex.IsMatch(number, PhoneNumberPattern) : false;
         }
     }
 }

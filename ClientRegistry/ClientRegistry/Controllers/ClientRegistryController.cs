@@ -1,5 +1,4 @@
 using ClientRegistry.API.Interface;
-using ClientRegistry.API.Models;
 using ClientRegistry.API.Models.Register;
 using ClientRegistry.API.Models.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +9,13 @@ namespace ClientRegistry.Controllers
     [Route("api/Customers")]
     public class CustomerController : ControllerBase
     {
-        private readonly FieldValidation _fieldValidation;
+        private readonly ICustomerService _fieldValidation;
         private readonly IGetCustomersService _getCustomersService;
-        private readonly IInformantionsCustomersService _informantionsService;
 
-        public CustomerController(FieldValidation fieldValidation, IGetCustomersService getCustomersService, IInformantionsCustomersService informantionsService)
+        public CustomerController(ICustomerService fieldValidation, IGetCustomersService getCustomersService)
         {
             _fieldValidation = fieldValidation;
             _getCustomersService = getCustomersService;
-            _informantionsService = informantionsService;
         }
 
         [HttpPost]
@@ -57,7 +54,7 @@ namespace ClientRegistry.Controllers
         {
             try
             {
-                var informations = await _informantionsService.GetInformationsCustomers(customerInformation);
+                var informations = await _getCustomersService.GetInformationsCustomers(customerInformation);
                 return Ok(informations);
             }
             catch (Exception ex)

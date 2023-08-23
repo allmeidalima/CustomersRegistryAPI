@@ -13,7 +13,6 @@ namespace ClientRegistry.API.Test
         private CustomerController _clientController;
         private FieldValidation _fieldValidation;
         private Mock<IGetCustomersService> _mockGetCustomersService;
-        private Mock<IInformantionsCustomersService> _mockInformantionsCustomersService;
         private Mock<ICustomerService> _mockClientService;
 
 
@@ -24,11 +23,9 @@ namespace ClientRegistry.API.Test
             _mockClientService.SetupAllProperties();
             _mockGetCustomersService = new Mock<IGetCustomersService>();
             _mockGetCustomersService.SetupAllProperties();
-            _mockInformantionsCustomersService = new Mock<IInformantionsCustomersService>();
-            _mockInformantionsCustomersService.SetupAllProperties();
             _fieldValidation = new FieldValidation(_mockClientService.Object);
 
-            _clientController = new CustomerController(_fieldValidation, _mockGetCustomersService.Object, _mockInformantionsCustomersService.Object);
+            _clientController = new CustomerController(_fieldValidation, _mockGetCustomersService.Object);
         }
 
         [Test]
