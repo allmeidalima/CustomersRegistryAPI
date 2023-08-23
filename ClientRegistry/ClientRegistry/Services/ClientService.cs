@@ -88,9 +88,9 @@ namespace ClientRegistry.API.Services
         public async Task<InformationsCustomersModel> GetInformationsCustomers(InformationsCustomersRequest request)
         {
             var customerInformation = await _prjContext.Clients
-            .Where(x => x.IdClient == request.IdCustomer && x.Name == request.CustomerName)
+            .Where(x => x.IdClient == request.IdCustomer)
             .Include(x => x.Addresses)
-            .Include(x => x.Emails)     
+            .Include(x => x.Emails)
             .FirstOrDefaultAsync();
 
             if (customerInformation != null)

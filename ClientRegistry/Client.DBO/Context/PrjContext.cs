@@ -5,6 +5,7 @@ namespace Client.DBO.Context
 {
     public class PrjContext : DbContext
     {
+
         public PrjContext() { }
 
         public PrjContext(DbContextOptions<PrjContext> options) : base(options)

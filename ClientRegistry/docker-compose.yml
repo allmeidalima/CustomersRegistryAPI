@@ -1,8 +1,21 @@
-version: '3.4'
+version: '3.8'
 
 services:
   clientregistry.api:
-    image: ${DOCKER_REGISTRY-}clientregistryapi
+    image: clientregistryapi
     build:
       context: .
       dockerfile: ClientRegistry/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - sqlserver
+    environment:
+      - ConnectionStrings__DefaultConnection=${CONNECTION_STRING}
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
