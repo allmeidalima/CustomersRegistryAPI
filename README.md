@@ -88,7 +88,7 @@ json
 		{
 			"priority": 0,
 			"typeEmail": 0,
-			"email": "almeida.lima@gmail.com"
+			"email": "meida.lima@gmail.com"
 		}
 	],
 	"address": [
