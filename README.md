@@ -87,7 +87,7 @@ json
 		{
 			"priority": 0,
 			"typeEmail": 0,
-			"email": "allmeida.lima@gmail.com"
+			"email": "almeida.lima@gmail.com"
 		}
 	],
 	"address": [
@@ -102,7 +102,7 @@ json
 	],
 	"phoneNumber": [
 		{
-			"phoneNumber": "(11)93709-1682",
+			"phoneNumber": "(11)93509-1782",
 			"priority": 0,
 			"typePhoneNumber": 0
 		}
