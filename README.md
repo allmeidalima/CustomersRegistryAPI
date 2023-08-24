@@ -75,6 +75,9 @@ Para facilitar a configuração do ambiente de desenvolvimento, o Docker Compose
 * Aperte F5 pra iniciar o programa ou aperte no botão  ![Capturar](https://github.com/allmeidalima/CustomersRegistryAPI/assets/91704800/05aba3c9-b7d0-42f1-9711-e2d7894ba589)
 * Por fim, vai abrir com a API e use o exemplo de requisição abaixo para cadastrar seu primeiro cliente.
 
+![api](https://github.com/allmeidalima/CustomersRegistryAPI/assets/91704800/76e07ba7-768a-4447-9bd4-123a6b15aa6f)
+
+
 ## Exemplo de corpo da requisição:
 json
 ```
