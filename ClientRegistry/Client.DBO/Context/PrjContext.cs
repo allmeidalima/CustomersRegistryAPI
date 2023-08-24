@@ -20,9 +20,6 @@ namespace Client.DBO.Context
 
         public DbSet<CustomerPhoneNumbers> CustomerPhoneNumbers { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer("Server=sqlserver;Database=teste;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True");
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerAdresses>()

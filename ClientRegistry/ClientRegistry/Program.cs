@@ -9,7 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 var conect = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<PrjContext>(options =>
-                options.UseSqlServer(conect));
+{
+    options.UseSqlServer(conect, sqlOptions =>
+    {
+        sqlOptions.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+    });
+});
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IGetCustomersService, CustomerService>();
@@ -20,6 +25,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
+using (IServiceScope scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    scope.ServiceProvider.GetService<PrjContext>().Database.Migrate();
+}
 
 app.UseRouting();
 

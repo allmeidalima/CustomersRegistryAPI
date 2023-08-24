@@ -8,6 +8,8 @@ services:
       dockerfile: ClientRegistry/Dockerfile
     environment:
          - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=teste;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True
+    depends_on: 
+         - sqlserver
   sqlserver:
     image: mcr.microsoft.com/mssql/server
     environment:
