@@ -6,9 +6,9 @@ Bem-vindo à documentação da API de Gerenciamento de Clientes. Esta API foi de
 
 # :hammer: Funcionalidades do projeto
 
-- `Funcionalidade 1`: Cadastrar clientes;
-- `Funcionalidade 2`: Consultar todos os clientes que estão na base;
-- `Funcionalidade 2a`: Consultar clientes por id;
+- `Funcionalidade 1`  : Cadastrar clientes;
+- `Funcionalidade 2`  : Consultar todos os clientes que estão na base;
+- `Funcionalidade 2a` : Consultar clientes por id;
 
 ## Tecnologias Utilizadas
 ![lincense](http://img.shields.io/static/v1?label=lincense&message=MIT&color=GREEN&style=for-the-badge)
@@ -73,9 +73,7 @@ Para facilitar a configuração do ambiente de desenvolvimento, o Docker Compose
 * git clone https://github.com/allmeidalima/CustomersRegistryAPI
 * Abra o código no Visual Studio, pois ele facilita o uso do docker compose.
 * Aperte F5 pra iniciar o programa ou aperte no botão  ![Capturar](https://github.com/allmeidalima/CustomersRegistryAPI/assets/91704800/05aba3c9-b7d0-42f1-9711-e2d7894ba589)
-* Com o comando **C + "** abra o terminal da IDE e navegue até a pasta Customer.DBO, o comando para isso é cd Customer.DBO.
-* Quando estiver nesse diretório aplique o seguinte comando no terminal: **dotnet ef database update**. Assim criaremos nosso banco de dados.
-* Por fim, pode fechar o terminal e uma aba do navegador ja vai estar aberta com a API rodando, use o exemplo de requisição abaixo para cadastrar seu primeiro cliente.
+* Por fim, vai abrir com a API e use o exemplo de requisição abaixo para cadastrar seu primeiro cliente.
 
 ## Exemplo de corpo da requisição:
 json
