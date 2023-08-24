@@ -1,69 +1,42 @@
-# ClientRegistryAPI
+
+![cd714d2d-cb93-4e82-95ae-f85feae1546e](https://github.com/allmeidalima/CustomersRegistryAPI/assets/91704800/08b04b62-a8ba-4f14-9d5a-687492a2a893)
 
 ## API de Gerenciamento de Clientes
 Bem-vindo à documentação da API de Gerenciamento de Clientes. Esta API foi desenvolvida para permitir o cadastro, listagem e obtenção de detalhes de clientes, incluindo informações como nome, telefone, email e endereço..
 
-## Funcionalidades
-### 1. Cadastrar Cliente
-Permite cadastrar um novo cliente com as seguintes informações:
+# :hammer: Funcionalidades do projeto
 
-ID (identificador único)
-- Nome Completo
-- Telefone
-- Email
-- Endereço
+- `Funcionalidade 1`: Cadastrar clientes;
+- `Funcionalidade 2`: Consultar todos os clientes que estão na base;
+- `Funcionalidade 2a`: Consultar clientes por id;
 
-## Exemplo de corpo da requisição:
-
-json
-```
-{
-	"name": "string",
-	"lastName": "string",
-	"email": [
-		{
-			"priority": 0,
-			"typeEmail": 0,
-			"email": "string"
-		}
-	],
-	"address": [
-		{
-			"priority": 0,
-			"typeAddress": 0,
-			"address": "string",
-			"neighborhood": "string",
-			"number": "string",
-			"postalCode": "string"
-		}
-	],
-	"phoneNumber": [
-		{
-			"phoneNumber": "string",
-			"priority": 0,
-			"typePhoneNumber": 0
-		}
-	]
-}
-```
 ## Tecnologias Utilizadas
-[![My Skills](https://skillicons.dev/icons?i=dotnet,docker,github)](https://skillicons.dev)
+![lincense](http://img.shields.io/static/v1?label=lincense&message=MIT&color=GREEN&style=for-the-badge)
+![linguage](http://img.shields.io/static/v1?label=linguage&message=Csharp&color=purple&style=for-the-badge)
+![containers](http://img.shields.io/static/v1?label=containers&message=Docker%20Compose&color=purple&style=for-the-badge)
+![data base](http://img.shields.io/static/v1?label=data%20base&message=Sql%20Server&color=purple&style=for-the-badge)
 
-- .NET Core {Versão Ativa}
-- API REST
-- Docker Compose
+# Índice 
 
-# Modelagem de Dados
-### A API utiliza as seguintes tabelas com relacionamentos:
+* [Estruturação](#Estruturação)
+* [Testes Unitários](#Testes-Unitários)
+* [Docker Compose](#Docker-Compose)
+* [Abrir e rodar o projeto](#Abrir-e-rodar-o-projeto)
 
-## Tabela Clientes:
+
+# Estruturação
+
+Modelagem de Dados
+A API utiliza as seguintes tabelas com relacionamentos:
+
+:white_check_mark: Tabela RegisteredCustomer:
 
 - ID (Chave Primária)
 - Nome Completo
 - Telefone
 - Data de Criação
 
-## Tabela Enderecos:
+:white_check_mark: Tabela CustomerAdresses:
 
 - ID (Chave Primária)
 - ClienteID (Chave Estrangeira para a tabela Clientes)
@@ -72,7 +45,7 @@ json
 - Estado
 - CEP
 
-## Tabela Email:
+:white_check_mark: Tabela CustomerEmails:
 
 - ID (Chave Primária)
 - ClienteID (Chave Estrangeira para a tabela Clientes)
@@ -80,7 +53,7 @@ json
 - Tipo do e-mail
 - Prioridade
 
-## Tabela Telefone:
+:white_check_mark: Tabela CustomerPhoneNumbers:
 
 - ID (Chave Primária)
 - ClienteID (Chave Estrangeira para a tabela Clientes)
@@ -94,11 +67,48 @@ Foram implementados testes unitários para validar a integridade e estrutura dos
 ## Docker Compose
 Para facilitar a configuração do ambiente de desenvolvimento, o Docker Compose é utilizado para subir um banco de dados SQL Server. Isso permite que você inicie o projeto sem se preocupar com as dependências de banco de dados.
 
-## Iniciando
-Clone este repositório: git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/allmeidalima/ClientRegistryAPI.git)
-Navegue até o diretório do projeto: cd nome-do-projeto
-Inicie os contêineres do Docker Compose: docker-compose up
-Acesse a API em: http://localhost:5000
+# 🛠️ Abrir e rodar o projeto
+
+**Rodando o projeto**
+* git clone https://github.com/allmeidalima/CustomersRegistryAPI
+* Abra o código no Visual Studio, pois ele facilita o uso do docker compose.
+* Aperte F5 pra iniciar o programa ou aperte no botão  ![Capturar](https://github.com/allmeidalima/CustomersRegistryAPI/assets/91704800/05aba3c9-b7d0-42f1-9711-e2d7894ba589)
+* Com o comando **C + "** abra o terminau da IDE e navegue até a pasta Customer.DBO, o comando para isso é cd Customer.DBO.
+* Quando estiver nesse diretório aplique o seguinte comando no terminal: **dotnet ef database update**. Assim criaremos nosso banco de dados.
+* Por fim, pode fechar o terminal e uma aba do navegador ja vai estar aberta com a API rodando, use o exemplo de requisição abaixo para cadastrar seu primeiro cliente.
+
+## Exemplo de corpo da requisição:
+json
+```
+{
+	"name": "Lucas",
+	"lastName": "Lima",
+	"email": [
+		{
+			"priority": 0,
+			"typeEmail": 0,
+			"email": "almeida.lima@gmail.com"
+		}
+	],
+	"address": [
+		{
+			"priority": 0,
+			"typeAddress": 0,
+			"address": "Rua Pacule",
+			"neighborhood": "Jovaia",
+			"number": "177",
+			"postalCode": "07132-580"
+		}
+	],
+	"phoneNumber": [
+		{
+			"phoneNumber": "(11)93509-1782",
+			"priority": 0,
+			"typePhoneNumber": 0
+		}
+	]
+}
+```
 
 ## Conclusão
 Esta API de Gerenciamento de Clientes oferece funcionalidades para cadastrar, listar e obter detalhes de clientes. Ela foi desenvolvida seguindo as melhores práticas do .NET Core e REST, além de incorporar testes unitários e Docker Compose para uma experiência de desenvolvimento otimizada. Sinta-se à vontade para contribuir, reportar problemas ou melhorar este projeto.
