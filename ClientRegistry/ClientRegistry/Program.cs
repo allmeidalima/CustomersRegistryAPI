@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add configuration
 
 var conect = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<PrjContext>(options =>
@@ -16,18 +15,17 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IGetCustomersService, CustomerService>();
 builder.Services.Decorate<ICustomerService, FieldValidation>();
 
-// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-app.UseRouting(); // Configure routing before other middleware
+
+app.UseRouting();
 
 if (app.Environment.IsDevelopment())
 {
-    // Enable Swagger UI only in development environment
+    
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
@@ -36,7 +34,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); // Use authentication before authorization
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {

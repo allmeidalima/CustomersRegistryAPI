@@ -11,8 +11,6 @@ namespace ClientRegistry.API.Test
     public class CustomersServicesTest : MockingTests
     {
         private PrjContext prjContext;
-        private Mock<ICustomerService> _mockCustomerService;
-        private Mock<IGetCustomersService> _getCustomerService;
         private CustomerService _customerService;
         private Fixture fixture;
 

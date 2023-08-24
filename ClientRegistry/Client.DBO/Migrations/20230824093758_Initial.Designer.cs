@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Customer.DBO.Migrations
 {
     [DbContext(typeof(PrjContext))]
-    [Migration("20230823012749_release01")]
-    partial class release01
+    [Migration("20230824093758_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
