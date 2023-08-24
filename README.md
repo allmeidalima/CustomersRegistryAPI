@@ -13,8 +13,8 @@ Bem-vindo à documentação da API de Gerenciamento de Clientes. Esta API foi de
 ## Tecnologias Utilizadas
 ![lincense](http://img.shields.io/static/v1?label=lincense&message=MIT&color=GREEN&style=for-the-badge)
 ![linguage](http://img.shields.io/static/v1?label=linguage&message=Csharp&color=purple&style=for-the-badge)
-![containers](http://img.shields.io/static/v1?label=containers&message=Docker%20Compose&color=purple&style=for-the-badge)
-![data base](http://img.shields.io/static/v1?label=data%20base&message=Sql%20Server&color=purple&style=for-the-badge)
+![containers](http://img.shields.io/static/v1?label=containers&message=Docker%20Compose&color=blue&style=for-the-badge)
+![data base](http://img.shields.io/static/v1?label=data%20base&message=Sql%20Server&color=orange&style=for-the-badge)
 
 # Índice 
 
