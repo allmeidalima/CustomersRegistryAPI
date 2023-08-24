@@ -8,7 +8,7 @@ Bem-vindo à documentação da API de Gerenciamento de Clientes. Esta API foi de
 
 - `Funcionalidade 1`  : Cadastrar clientes;
 - `Funcionalidade 2`  : Consultar todos os clientes que estão na base;
-- `Funcionalidade 2a` : Consultar clientes por id;
+- `Funcionalidade 3` : Consultar clientes por id;
 
 ## Tecnologias Utilizadas
 ![lincense](http://img.shields.io/static/v1?label=lincense&message=MIT&color=GREEN&style=for-the-badge)
