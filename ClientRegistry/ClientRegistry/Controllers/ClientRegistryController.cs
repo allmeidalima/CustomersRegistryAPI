@@ -24,6 +24,7 @@ namespace ClientRegistry.Controllers
         {
             try
             {
+                //Direciona para criação de clientes.
                 await _fieldValidation.CreateCustomer(client);
 
                 return Ok("Client created successfully.");
