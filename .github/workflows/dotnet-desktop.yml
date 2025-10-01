@@ -56,7 +56,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: ClientRegistry.sln
+      Solution_Name: ClientRegistry\ClientRegistry.sln
       Test_Project_Path: ClientRegistry\ClientRegistry.API.Test\CustomerRegistry.API.Test.csproj
     steps:
     - name: Checkout
@@ -83,6 +83,7 @@ jobs:
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
       env:
         Configuration: ${{ matrix.configuration }}
+      working-directory: ${{ github.workspace }}
 
     # Decode the base 64 encoded pfx and save the Signing_Certificate
     - name: Decode the pfx
