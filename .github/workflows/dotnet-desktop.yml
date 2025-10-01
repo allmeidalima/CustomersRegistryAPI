@@ -56,7 +56,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: ClientRegistry\ClientRegistry.sln
+      Solution_Name: ClientRegistry.sln
       Test_Project_Path: ClientRegistry\ClientRegistry.API.Test\CustomerRegistry.API.Test.csproj
     steps:
     - name: Checkout
@@ -68,7 +68,7 @@ jobs:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 6.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
